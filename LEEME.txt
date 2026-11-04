@@ -1,0 +1,40 @@
+ARCHIVOS DE PRUEBA - TP Drones (opcion 1: Cargar archivo de ataque en memoria)
+
+Formato: son archivos binarios hechos con el struct OrdenArchivo de tu main.cpp
+(con el campo "ocupado"). Solo sirven con tu programa tal como esta.
+Para usarlos: copialos junto al .exe y escribi solo el nombre (ej: hueco.dat),
+o escribi la ruta completa.
+
+--- DEBEN CARGAR SIN ERROR ---------------------------------------------------
+valido_aterrizaje.dat   4 registros. Ruta (10,10) -> (10,11) -> (10,12) -> (11,12).
+                        Despegue en (10,10), granada 1 en (10,11), espera 3 en (10,12),
+                        aterrizaje en (11,12).
+valido_kamikaze.dat     3 registros. Ruta en diagonal (5,5) -> (6,6) -> (7,7).
+                        Despegue en (5,5), granada 2 en (6,6), kamikaze en (7,7).
+multi.dat               4 registros. La celda (10,11) tiene granada 1 + granada 2 + espera
+                        y la (11,12) tiene aterrizaje + espera. Sirve para probar la
+                        opcion 7 (HTML): esas celdas deben mostrar varios emojis juntos.
+
+--- DEBEN SER RECHAZADOS (y la opcion 2 debe decir "No hay ningun archivo cargado") ---
+sin_despegue.dat          Motivo: Debe haber un despegue
+dos_despegues.dat         Motivo: Los archivos deben tener una unica instruccion de despegue
+despegue_con_granada.dat  Motivo: La instruccion de despegue no puede estar acompañada por
+                          ningún tipo de ataque
+coordenada_repetida.dat   Motivo: No se puede pasar por la misma coordenada mas de una vez
+hueco.dat                 Motivo: La ruta tiene huecos
+sin_final.dat             Motivos: Debe haber un aterrizaje + La ruta tiene huecos
+fuera_de_rango.dat        Motivo: Hay registros con coordenadas fuera de la tabla (0 a 199)
+                          (tiene un registro con x = 250)
+siguiente_fuera.dat       Motivo: La ruta tiene huecos
+                          (un registro apunta a siguiente x = 200, fuera de la tabla)
+no_aledano.dat            Motivo: La siguiente coordenada debe ser aledaña a la coordenada actual
+aterrizaje_y_kamikaze.dat Motivo: Debe existir una unica instruccion de aterrizaje o ataqueKamikaze
+vacio.dat                 Motivos: Debe haber un despegue + Debe haber un aterrizaje
+
+--- OTRAS PRUEBAS A MANO -----------------------------------------------------
+- Opcion 1 con un nombre que no existe: "No se pudo abrir el archivo" y luego la opcion 2
+  debe decir "No hay ningun archivo cargado".
+- Cargar un valido y despues un invalido: el invalido no se carga (la tabla queda vacia).
+- Opcion 6 con una ruta invalida (ej: /noexiste/x.dat): no debe cerrarse el programa.
+- Opcion 3: crear un archivo con la opcion 3 y volver a cargarlo con la opcion 1.
+- Opcion 4 / 5: corregir un registro y verificar que se reemplazo.
